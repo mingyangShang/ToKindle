@@ -5,9 +5,11 @@
 ___
 
 <font size="+2">**环境要求**</font>
+
 保证Python版本>=2.6,可使用`python -V`查看
 
 <font size="+2">**如何使用**</font>
+
 1. 首先`git clone git@github.com:mingyangShang/ToKindle.git`,或者fork一个，clone的地址改为自己仓库的地址
 2. 在`config.py`文件中配置邮件相关参数，如现在项目中的例子所示：
 
@@ -26,4 +28,5 @@ ___
 	
 
 <font size="+2">**存在问题**</font>
+
 1. 本工具已用163，126，gmail邮箱测试过，但如果使用的邮件服务器为qq邮箱服务器时，邮件不能正常发送到Kindle绑定邮箱，该问题尚未解决，请有需要的用户使用163等邮箱
