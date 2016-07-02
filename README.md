@@ -21,11 +21,11 @@ ___
 	KINDLE_MAIL = "mingyangshang@kindle.cn" # kindle邮箱,即接收文件的邮箱
 	```
 3. 此时进入该项目的根目录下，运行
-	`python main.py 附件1 附件2`
+	`python kindle.py 附件1 附件2`
 	即可将附件1和附件2发送到`KINDLE_MAIL`即kindle绑定的邮箱中，附件个数不限，以空格分隔开就可以
 4. 为了在任何位置都可以方便地使用该工具而不用一定要进入项目所在目录，可以用alias将命令简单化.
-	- Mac用户：编辑`~/.bash_profile`文件，添加`alias kindle="python main.py所在位置"`，使用`source ~/.bash_profile`持久化该别名
-	- Linux用户：编辑`~/.bashrc`文件，添加`alias kindle="python main.py所在位置"`，使用`source ~/.bashrc`持久化该别名
+	- Mac用户：编辑`~/.bash_profile`文件，添加`alias kindle="python kindle.py所在位置"`，使用`source ~/.bash_profile`持久化该别名
+	- Linux用户：编辑`~/.bashrc`文件，添加`alias kindle="python kindle.py所在位置"`，使用`source ~/.bashrc`持久化该别名
 	这样，在任何文件位置都可以使用 `kindle 附件全名`发送文件到Kindle了。
 	
 
