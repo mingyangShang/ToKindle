@@ -49,6 +49,7 @@ class EmailSender(object):
             s.quit()
         except smtplib.SMTPException, e:
             print "error:", e
+            return False
 
         return True
 
