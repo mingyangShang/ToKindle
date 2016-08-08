@@ -3,6 +3,7 @@
 import smtplib
 import os
 import sys
+import time
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -36,6 +37,14 @@ class EmailSender(object):
         msg['Subject'] = subject
         msg['From'] = sender
         msg['To'] = receiver
+
+        # 针对qq邮箱的单独处理,伪造身份模仿foxmail发送邮件
+        if self.mailHost == "smtp.qq.com":
+            msg["X-Mailer"] = " Foxmail 7, 2, 7, 26[cn]" #客户端标识
+            msg["Mime-Version"] = "1.0" #mime版本
+            # Message-ID表示唯一标识该邮件,格式为<年月日时分秒><秒7位精确值>@qq.com,如"201608081052057498290@qq.com"
+            # 这里简单起见,将秒后的精确值都置为0
+            msg["Message-ID"] = time.strftime("%Y%m%d%H%M%S", time.localtime()) + "0000000@qq.com"
 
         # 按序构造附件列表
         map(msg.attach, [self.attachFile(filePath) for filePath in filePaths])
