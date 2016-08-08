@@ -47,7 +47,11 @@ class EmailSender(object):
             msg["Message-ID"] = time.strftime("%Y%m%d%H%M%S", time.localtime()) + "0000000@qq.com"
 
         # 按序构造附件列表
-        map(msg.attach, [self.attachFile(filePath) for filePath in filePaths])
+        # map(lambda att:msg.attach(att), [self.attachFile(filePath) for filePath in filePaths])
+        for filePath in filePaths:
+            att = self.attachFile(filePath)
+            if att:
+                msg.attach(att)
 
         try:
             s = smtplib.SMTP()
@@ -57,7 +61,7 @@ class EmailSender(object):
             s.sendmail(sender, receiver, msg.as_string())
             s.quit()
         except smtplib.SMTPException, e:
-            print "error:", e
+            print "error:", e.__str__().encode("utf-8")
             return False
 
         return True
@@ -84,9 +88,9 @@ class EmailSender(object):
                 att = MIMEText(open(filePath, "rb").read(), "base64", "utf-8")
             else:
                 att = MIMEText(open(filePath, "r").read(), _charset = "utf-8")
-        except IOError, e:
-            print "error:", e
-            print fileName + "读取失败,请检查文件是否存在"
+        except IOError:
+            print "<<" + fileName + ">>" + "读取失败,请检查文件是否存在"
+            return None
 
         att["Content-Type"] = 'application/octet-stream'
         # filename will be displayed as attachment's name,should be extracted from filePath
@@ -96,7 +100,6 @@ class EmailSender(object):
 
 
 if __name__ == "__main__":
-
     fileList = []
     for i in range(len(sys.argv)):
         if i > 0:
