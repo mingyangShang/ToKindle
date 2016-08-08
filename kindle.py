@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
 import os
 import sys
+
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from config import MAIL_HOST, MAIL_USER, MAIL_PWD, KINDLE_MAIL
 
