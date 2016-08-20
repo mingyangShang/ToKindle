@@ -8,7 +8,7 @@ import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-from config import MAIL_HOST, MAIL_USER, MAIL_PWD, KINDLE_MAIL
+from config import MAIL_HOST, MAIL_USER, MAIL_PWD, KINDLE_MAIL, SMTP_TIMEOUT
 
 class EmailSender(object):
 
@@ -54,7 +54,7 @@ class EmailSender(object):
                 msg.attach(att)
 
         try:
-            s = smtplib.SMTP()
+            s = smtplib.SMTP(timeout = SMTP_TIMEOUT)
             s.connect(self.mailHost)
             s.starttls()
             s.login(self.mailUser, self.mailPwd)
@@ -104,6 +104,8 @@ if __name__ == "__main__":
     for i in range(len(sys.argv)):
         if i > 0:
             fileList.append(sys.argv[i])
+
+
 
     e = EmailSender(MAIL_HOST, MAIL_USER, MAIL_PWD)
     print "邮件发送中……"
