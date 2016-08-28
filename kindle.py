@@ -104,9 +104,6 @@ if __name__ == "__main__":
     for i in range(len(sys.argv)):
         if i > 0:
             fileList.append(sys.argv[i])
-
-
-
     e = EmailSender(MAIL_HOST, MAIL_USER, MAIL_PWD)
     print "邮件发送中……"
     if e.emailFile(MAIL_USER, KINDLE_MAIL, fileList):
